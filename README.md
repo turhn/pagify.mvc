@@ -5,7 +5,7 @@ Bringing together ASP.NET MVC PagedList and Knockoutjs Library For Fast Grids
 
 
 In order to use this javascript function. We need to prepare our MVC Action. 
-
+<pre><code>
         public ActionResult UserList(string currentFilter, string searchString, int? page, int pageSize = 10)
         {
             ViewBag.CurrentFilter = searchString;
@@ -37,8 +37,9 @@ In order to use this javascript function. We need to prepare our MVC Action.
 
             return Json(new {items = itemList, metaData = itemList.GetMetaData()}, JsonRequestBehavior.AllowGet);
         }
-        =============
+</code></pre>
 Our View should call the function 'Pagify'
+```javascript
    <script type="text/javascript">
     $(function() {
             Pagify('users',   //ID of the element which you want to apply bindings
@@ -53,8 +54,9 @@ Our View should call the function 'Pagify'
         );
     }
     </script>
-        
+```     
 Html for model bindings
+```html
 <div>
    <select id="pagelength" name="pagelength" size="1" aria-controls="users">
       <option value="10" selected="selected">10</option>
@@ -65,9 +67,6 @@ Html for model bindings
 </div>
 <div>
   <input type="text" id="SearchString" placeholder="Search..."/>
-</div>
-<div>
-
 </div>
 <table id="users">
   <thead>
@@ -96,5 +95,5 @@ Html for model bindings
     </td>
   </tfoot>
 </table>
-
+``` 
 That's all! 
