@@ -55,6 +55,23 @@ Our View should call the function 'Pagify'
     }
     </script>
 ```     
+If you wish you can freely use pagify as JQuery Plugin
+```javascript
+   <script src="/Scripts/jquery.pagify-1.0.0.js"></script>
+   <script type="text/javascript">
+    $(function() {
+        $('#users').pagify({
+            dataUrl: '/User/UserLisr',
+            callBack: function(){
+               // Ajax remove preloader and some other callbacks  
+            },
+            beforeSend: function(){
+               // Ajax show preloader and some other function before start
+            }
+        });
+    }
+    </script>
+```  
 Html for model bindings
 ```html
 <div>
