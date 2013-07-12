@@ -113,4 +113,8 @@ Html for model bindings
   </tfoot>
 </table>
 ``` 
+
+For sample data you can use the following:
+https://github.com/turhancoskun/pagify.mvc/wiki/Sample-Data
+
 That's all! 
