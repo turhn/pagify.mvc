@@ -1,8 +1,26 @@
 pagify.mvc
 ==========
 
-Bringing together ASP.NET MVC PagedList and Knockoutjs Library For Faster Data Tables
+Use pagify.mvc For Faster and Simpler Data Tables
 
+I use KnockoutJs library in my Web Projects as a solution for MVVM pattern. It is so simple and well documented. In ASP.NET MVC, it is really hard to create a simple paged ajax datatable. Thus I decided to share this simple plugin with the others. I included a fully working ASP.NET MVC 4 project which shows the plugin in action.
+
+The MVC4 project contains a sample which shows how to create an ajax paged data table by using knockoutjs and papify.mvc in ASP.NET MVC. 
+
+##Goal For Now
+- Adding OrderBy feature
+
+##Goals For Future
+- Removing all dependencies 
+- Making pagify.mvc more flexible and compatible
+
+##Can I contribute?
+Please feel free for any kind of contribution. 
+You can;
+- give your valuable opinion about anything,
+- report a bug,
+- request editing source code 
+- join the development process.
 
 In order to use this javascript function. We need to prepare our MVC Action. 
 <pre><code>
@@ -29,8 +47,8 @@ When the document is ready, we are calling our Jquery plugin
     });
 ```     
 
-```  
 Html for model bindings
+
 ```html
 <div>
    <select id="pagelength" name="pagelength" size="1" aria-controls="users">
