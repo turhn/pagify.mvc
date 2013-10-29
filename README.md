@@ -1,76 +1,36 @@
 pagify.mvc
 ==========
 
-Bringing together ASP.NET MVC PagedList and Knockoutjs Library For Fast Grids
+Bringing together ASP.NET MVC PagedList and Knockoutjs Library For Faster Data Tables
 
 
 In order to use this javascript function. We need to prepare our MVC Action. 
 <pre><code>
-        public ActionResult UserList(string currentFilter, string searchString, int? page, int pageSize = 10)
-        {
-            ViewBag.CurrentFilter = searchString;
-
-            var userprofiles = (from u in db.UserProfiles
-                                join m in db.webpages_Membership on u.UserId equals m.UserId
-                                select new UserIndex
-                                           {
-                                               UserID = u.UserId,
-                                               UserName = u.UserName,
-                                               FirstName = u.FirstName,
-                                               LastName = u.LastName
-
-                                           }).AsEnumerable();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                userprofiles =
-                    userprofiles.Where(
-                        u =>  u.UserName.ToUpper().Contains(searchString.ToUpper()
-                        ).AsEnumerable();
-            }
-
-
-            int pageNumber = (page ?? 1);
-
-            var itemList = new PagedList<UserIndex>(userprofiles.OrderByDescending(x => x.UserID), pageNumber,
-                                                    pageSize);
-
+        public ActionResult UserList(int? page, int pageSize = 10)
+        {          
+            var items = SampleRepository.GetUsers();
+            var pageNumber = page ?? 1;
+            var itemList = new PagedList<SampleModelsRepository.User>(items, pageNumber, pageSize);
             return Json(new {items = itemList, metaData = itemList.GetMetaData()}, JsonRequestBehavior.AllowGet);
         }
 </code></pre>
-Our View should call the function 'Pagify'
+When the document is ready, we are calling our Jquery plugin
 ```javascript
-   <script type="text/javascript">
-    $(function() {
-            Pagify('users',   //ID of the element which you want to apply bindings
-            '/User/UserList', //Url of the JSON which you want to get data
-            25,
-            function() {
-                // Ajax remove preloader and some other callbacks              
-            },
-            function() {
-                // Ajax show preloader and some other function before start
-            }
-        );
-    }
-    </script>
-```     
-If you wish you can freely use pagify as JQuery Plugin
-```javascript
-   <script src="/Scripts/jquery.pagify-1.0.0.js"></script>
-   <script type="text/javascript">
+<script type="text/javascript">
     $(function() {
         $('#users').pagify({
-            dataUrl: '/User/UserLisr',
-            callBack: function(){
-               // Ajax remove preloader and some other callbacks  
+            dataUrl: '/Home/UserList', //The URL where we get our JSON data
+            callBack: function() {
+                // Ajax remove preloader and some other callbacks  
             },
-            beforeSend: function(){
-               // Ajax show preloader and some other function before start
+            beforeSend: function() {
+                // Ajax show preloader and some other function before start
             }
         });
-    }
-    </script>
+    });
+</script>
+```     
+
 ```  
 Html for model bindings
 ```html
@@ -85,24 +45,29 @@ Html for model bindings
 <div>
   <input type="text" id="SearchString" placeholder="Search..."/>
 </div>
-<table id="users">
+<table id="users" data-bind="foreach: Items">
   <thead>
+  <tr>
     <th>UserID</th>
     <th>UserName</th>
     <th>FirstName</th>
     <th>LastName</th>
+  </tr>
   </thead>
   <tbody>
-    <td data-bind="text: UserID"></td>
+  <tr>
+    <td data-bind="text: UserId"></td>
     <td data-bind="text: UserName"></td>
     <td data-bind="text: FirstName"></td>
     <td data-bind="text: LastName"></td>
+  </tr>
   </tbody>
   <tfoot>
+    <tr>
     <td colspan="4">
       <div> Page <span data-bind="text: MetaData.PageNumber"></span> of <span data-bind="text: MetaData.PageCount"></span></div>
         <div>
-            <ul>
+            <ul class="pagination">
                 <li><a style="display: none;" data-bind="click: FirstPage, visible: MetaData.HasPreviousPage" href="javascript:void(0);">First</a></li>
                 <li><a style="display: none;" data-bind="click: PreviousPage, visible: MetaData.HasPreviousPage" href="javascript:void(0);">← Prev</a></li>
                 <li><a style="display: none;" data-bind="click: NextPage, visible: MetaData.HasNextPage" href="javascript:void(0);">Next →</a></li>
@@ -110,11 +75,10 @@ Html for model bindings
             </ul>
         </div>
     </td>
+  </tr>
   </tfoot>
 </table>
 ``` 
-
-For sample data you can use the following:
-https://github.com/turhancoskun/pagify.mvc/wiki/Sample-Data
+Follow me on Twitter @turhancoskun 
 
 That's all! 

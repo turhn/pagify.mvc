@@ -1,0 +1,8 @@
+﻿body {
+    font-size: 1.2em;
+}
+
+#loading {
+    display: none;
+    text-align: center;
+}

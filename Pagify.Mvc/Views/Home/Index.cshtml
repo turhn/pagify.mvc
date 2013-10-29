@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Pagify.Mvc Sample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery.pagifymvc-1.0.0.js"></script>
+
+<div class="container">
+    
+    <h1>Pagify.Mvc Sample</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <select id="pagelength" name="pagelength" size="1" aria-controls="users">
+                <option value="10" selected="selected">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select> per page
+        </div>
+    </div>
+    <div>
+        <div class="col-md-12">
+            <div id="loading">
+                <h3>Loading...</h3>
+            </div>
+            <table id="users" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>UserName</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: Items">
+                    <tr>
+                        <td data-bind="text: UserId"></td>
+                        <td data-bind="text: UserName"></td>
+                        <td data-bind="text: FirstName"></td>
+                        <td data-bind="text: LastName"></td>
+                    </tr>
+                </tbody>
+                <tfoot>          
+                    <tr>
+                        <td colspan="4">
+                            <div class="row">
+                                <div class="col-md-6"> Page <span data-bind="text: MetaData.PageNumber"></span> of <span data-bind="text: MetaData.PageCount"></span></div>
+                                <div class="col-md-6">
+                                    <ul class="pagination pull-right">
+                                        <li><a style="display: none;" data-bind="click: FirstPage, visible: MetaData.HasPreviousPage" href="javascript:void(0);">First</a></li>
+                                        <li><a style="display: none;" data-bind="click: PreviousPage, visible: MetaData.HasPreviousPage" href="javascript:void(0);">← Prev</a></li>
+                                        <li><a style="display: none;" data-bind="click: NextPage, visible: MetaData.HasNextPage" href="javascript:void(0);">Next →</a></li>
+                                        <li><a style="display: none;" data-bind="click: LastPage, visible: MetaData.HasNextPage" href="javascript:void(0);">Last</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#users').pagify({
+            dataUrl: '/Home/UserList',
+            callBack: function() {
+                // Ajax remove preloader and some other callbacks  
+                $('#loading').hide();
+            },
+            beforeSend: function() {
+                // Ajax show preloader and some other function before start
+                $('#loading').show();
+            }
+        });
+    });
+</script>
+
+@section scripts
+{
+    <script src="~/Scripts/knockout-3.0.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+}
