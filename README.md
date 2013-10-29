@@ -16,7 +16,6 @@ In order to use this javascript function. We need to prepare our MVC Action.
 </code></pre>
 When the document is ready, we are calling our Jquery plugin
 ```javascript
-<script type="text/javascript">
     $(function() {
         $('#users').pagify({
             dataUrl: '/Home/UserList', //The URL where we get our JSON data
@@ -28,7 +27,6 @@ When the document is ready, we are calling our Jquery plugin
             }
         });
     });
-</script>
 ```     
 
 ```  
