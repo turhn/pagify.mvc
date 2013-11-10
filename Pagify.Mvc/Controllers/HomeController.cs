@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using PagedList;
 using System.Web.Mvc;
+using Pagify.Mvc.Extensions;
 using Pagify.Mvc.Models;
 
 namespace Pagify.Mvc.Controllers
@@ -17,12 +19,15 @@ namespace Pagify.Mvc.Controllers
             return View();
         }
 
-        public ActionResult UserList(int? page, int pageSize = 10)
+        public ActionResult UserList(int? page, int pageSize = 10, string sortBy=null, string sortType=null)
         {          
             Thread.Sleep(1000); //To demonstrate latency
 
             var pageNumber = page ?? 1;
-            var itemList = new PagedList<SampleModelsRepository.User>(Repository.GetUsers(), pageNumber, pageSize);
+            sortBy = string.IsNullOrEmpty(sortBy) ? "UserId" : sortBy;
+            sortType = string.IsNullOrEmpty(sortType) ? "OrderBy" : sortType;
+
+            var itemList = new PagedList<SampleModelsRepository.User>(Repository.GetUsers().AsQueryable().OrderByField(sortBy, sortType), pageNumber, pageSize);
             return Json(new {items = itemList, metaData = itemList.GetMetaData()}, JsonRequestBehavior.AllowGet);
         }
 

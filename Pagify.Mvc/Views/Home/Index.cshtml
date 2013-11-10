@@ -2,7 +2,7 @@
     ViewBag.Title = "Pagify.Mvc Sample";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/jquery.pagifymvc-1.0.0.js"></script>
+<script src="~/Scripts/jquery.pagifymvc-1.1.0.js"></script>
 
 <div class="container">
     
@@ -26,10 +26,10 @@
             <table id="users" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>UserID</th>
-                        <th>UserName</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
+                        <th class="sorting" data-field="UserId">UserID</th>
+                        <th class="sorting" data-field="UserName">User Name</th>
+                        <th class="sorting" data-field="FirstName">First Name</th>
+                        <th class="sorting" data-field="LastName">Last Name</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: Items">

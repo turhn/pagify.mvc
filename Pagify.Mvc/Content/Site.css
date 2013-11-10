@@ -6,3 +6,7 @@
     display: none;
     text-align: center;
 }
+
+table thead .sorting { background: url('images/sort_both.png') no-repeat center right; cursor: pointer; }
+table thead .sorting_asc { background: url('images/sort_asc.png') no-repeat center right; cursor: pointer; }
+table thead .sorting_desc { background: url('images/sort_desc.png') no-repeat center right; cursor: pointer; }
