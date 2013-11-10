@@ -27,7 +27,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 beforeSend: function () {
                 },
                 pageSizeElement: $('#pagelength'),
-                sortingClass : 'sortings'
+                sortingClass : 'sorting'
             };
             options = $.extend({}, defaults, options);
             var obj = $(this)[0];
