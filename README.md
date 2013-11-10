@@ -7,6 +7,7 @@ I use KnockoutJs library in my Web Projects as a solution for MVVM pattern. It i
 
 The MVC4 project contains a sample which shows how to create an ajax paged data table by using knockoutjs and papify.mvc in ASP.NET MVC. 
 
+[Visit the Wiki for Documentation](https://github.com/turhancoskun/pagify.mvc/wiki/Pagify.Mvc-1.1.0-Documentation)
 
 ##Goal For Now
 - <del>Adding OrderBy feature</del>
@@ -111,5 +112,5 @@ Html for model bindings
 That's All!
 
 
-Follow me on Twitter @turhancoskun 
+Follow me on Twitter [@turhancoskun](http://www.twitter.com/turhancoskun) 
 
