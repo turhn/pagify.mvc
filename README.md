@@ -1,5 +1,8 @@
-pagify.mvc
+pagify.mvc (deprecated)
 ==========
+
+##Warning
+This project will no longer supported by me.
 
 Use pagify.mvc For Faster and Simpler Data Tables
 
@@ -112,5 +115,5 @@ Html for model bindings
 That's All!
 
 
-Follow me on Twitter [@turhancoskun](http://www.twitter.com/turhancoskun) 
+Follow me on Twitter [@turhanco](http://www.twitter.com/turhanco) 
 
